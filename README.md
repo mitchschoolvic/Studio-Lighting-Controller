@@ -12,7 +12,7 @@ A tray-resident MacOS application that drives DMX lights over a USB adapter, suc
 
 ---
 
-## 🎬 Demo
+## Demo
 
 ### App UI & Canvas Screen
 
