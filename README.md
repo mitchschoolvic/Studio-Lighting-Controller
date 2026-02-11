@@ -2,7 +2,7 @@
 
 <img src="Icon/app-icon.png" alt="Studio Lighting Controller Icon" width="200" />
 
-# 💡 Studio Lighting Controller
+# Studio Lighting Controller
 
 **Professional DMX lighting control for macOS**
 
@@ -34,13 +34,13 @@ A tray-resident MacOS application that drives DMX lights over a USB adapter, suc
 
 ---
 
-## ✨ Features
+## Features
 
 <table>
 <tr>
 <td width="50%">
 
-### 🎛️ Fixture Control
+### Fixture Control
 - **Canvas View** — drag-and-drop spatial fixture layout
 - **Color Wheel** — HSV/RGB picker with live preview
 - **Fader Bank** — per-channel sliders with fixture labels
@@ -51,7 +51,7 @@ A tray-resident MacOS application that drives DMX lights over a USB adapter, suc
 </td>
 <td width="50%">
 
-### 🎨 Preset System
+### Preset System
 - **Save & Recall** — capture and restore full lighting states
 - **Crossfade** — smooth timed transitions between presets
 - **Color Tags** — visual organization for preset grids
@@ -71,7 +71,7 @@ A tray-resident MacOS application that drives DMX lights over a USB adapter, suc
 </td>
 <td width="50%">
 
-### 🤖 Automation
+### Automation
 - **Bitfocus Companion** — WebSocket integration (port 9091)
 - **Custom Companion Module** — native actions, feedbacks, and variables
 - **Variable Sender Module** — push data from Companion
@@ -83,7 +83,7 @@ A tray-resident MacOS application that drives DMX lights over a USB adapter, suc
 
 ---
 
-## 📋 Prerequisites
+## Prerequisites
 
 | Requirement | Version |
 |---|---|
@@ -94,7 +94,7 @@ A tray-resident MacOS application that drives DMX lights over a USB adapter, suc
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Clone the repository
@@ -115,7 +115,7 @@ The UI is also accessible at **`http://<your-ip>:9090`** from any device on your
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌──────────────────────────────────────────────────────────────────┐
@@ -171,7 +171,7 @@ The UI is also accessible at **`http://<your-ip>:9090`** from any device on your
 
 ---
 
-## 🎮 UI Views
+## UI Views
 
 ### Canvas View
 The primary view. Fixtures are represented as interactive nodes on a 2D canvas. Drag fixtures from the palette, position them spatially, and control them by clicking. A control drawer opens on the left with color wheel, faders, and mode selectors for the selected fixture.
@@ -181,7 +181,7 @@ A detailed engineering view with per-fixture cards, a full 512-channel fader ban
 
 ---
 
-## 📦 Fixture Profiles
+## Fixture Profiles
 
 The app ships with bundled fixture profiles in the `fixtures/` directory. Profiles define channel layouts, modes, control types, and default values.
 
@@ -209,7 +209,7 @@ Create a JSON file in `fixtures/` following the profile schema. The app auto-dis
 
 ---
 
-## 🤖 Companion Integration
+## Companion Integration
 
 ### Companion Module
 
@@ -310,7 +310,7 @@ npm run rebuild        # Rebuild native serialport for Electron
 
 ---
 
-## 📦 Build & Package
+## Build & Package
 
 ```bash
 # One-command build + package
@@ -332,7 +332,7 @@ This script will:
 
 ---
 
-## 📂 File Locations
+## File Locations
 
 | Data | Path |
 |------|------|
@@ -341,10 +341,3 @@ This script will:
 
 ---
 
-## 📄 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## License
-
-MIT
