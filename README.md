@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="Icon/app-icon.png" alt="Studio Lighting Controller Icon" width="200" />
+
 # 💡 Studio Lighting Controller
 
 **Professional DMX lighting control for macOS**
