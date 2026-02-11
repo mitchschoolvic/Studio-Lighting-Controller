@@ -6,7 +6,13 @@
 
 **Professional DMX lighting control for macOS**
 
-A tray-resident MacOS application that drives DMX lights over a USB adapter, such as the Enttec DMX USB Pro. This app exposes a touch-friendly web interface with multi-user live collaboration over the local network. It offers a drag and drop canvas to place lights intuitively, supports creating and recalling presets, and includes a Bitfocus Companion module for automation.
+A tray-resident MacOS application that drives DMX lights over a USB adapter, such as the Enttec DMX USB Pro.
+
+✅ Touch-friendly web interface  
+✅ Multi-user live collaboration over the local network  
+✅ Drag and drop canvas to place lights intuitively  
+✅ Create and recall presets  
+✅ Bitfocus Companion module for automation  
 
 </div>
 
