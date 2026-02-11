@@ -1,10 +1,10 @@
 <div align="center">
 
-# 💡 DMX Controller
+# 💡 Studio Lighting Controller
 
 **Professional DMX lighting control for macOS**
 
-A tray-resident Electron application that drives an Enttec DMX USB Pro adapter, exposes a touch-friendly React-based virtual console, and integrates with Bitfocus Companion for remote automation.
+A tray-resident MacOS application that drives DMX lights over a USB adapter, such as the Enttec DMX USB Pro. This app exposes a touch-friendly web interface with multi-user live collaboration, drag and drop canvas, create and recall presets, and includes a Bitfocus Companion module for automation.
 
 </div>
 
