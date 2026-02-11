@@ -1,0 +1,30 @@
+appId: com.lighting.dmx-controller
+productName: DMX Controller
+mac:
+  target:
+    - target: dmg
+      arch:
+        - arm64
+  category: public.app-category.entertainment
+  icon: assets/icon.icns
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: entitlements.mac.plist
+  extendInfo:
+    LSUIElement: true
+
+asar: true
+asarUnpack:
+  - "node_modules/serialport/**"
+  - "node_modules/@serialport/**"
+
+files:
+  - "dist/**/*"
+  - "assets/**/*"
+  - "fixtures/**/*"
+  - "node_modules/**/*"
+  - "!dist/*.dmg"
+  - "!dist/*.app"
+  - "!dist/mac-arm64/**"
+  - "!**/*.dmg"
+  - "!**/*.app"

@@ -1,0 +1,28 @@
+{
+  "fixture": "Forza Nanlite 200",
+  "channelCount": 5,
+  "modeChannel": "ch2",
+  "channels": {
+    "ch1": { "role": "dimmer", "label": "Brightness" },
+    "ch2": { "role": "mode-select", "label": "Mode" },
+    "ch3": { "role": "dynamic", "label": "Control 1" },
+    "ch4": { "role": "dynamic", "label": "Control 2" },
+    "ch5": { "role": "dynamic", "label": "Control 3" }
+  },
+  "modes": [
+    { "name": "Daylight", "channelValue": 0, "icon": "sun.svg", "controls": {} },
+    { "name": "INT Loop", "channelValue": 25, "icon": "repeat.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }, "ch4": { "label": "Intensity", "type": "fader", "icon": "sun-medium.svg" } } },
+    { "name": "Flash", "channelValue": 45, "icon": "zap.svg", "controls": { "ch3": { "label": "Intervals", "type": "fader", "icon": "timer.svg" }, "ch4": { "label": "Flash Ratio", "type": "fader", "icon": "scale.svg" } } },
+    { "name": "Pulse", "channelValue": 63, "icon": "activity.svg", "controls": { "ch3": { "label": "Pulses/Min", "type": "fader", "icon": "gauge.svg" } } },
+    { "name": "Storm Auto", "channelValue": 80, "icon": "cloud-lightning.svg", "controls": { "ch3": { "label": "Intervals", "type": "fader", "icon": "timer.svg" }, "ch4": { "label": "Intensity", "type": "fader", "icon": "sun-medium.svg" } } },
+    { "name": "Storm Manual", "channelValue": 98, "icon": "bolt.svg", "controls": { "ch3": { "label": "Intensity", "type": "fader", "icon": "sun-medium.svg" }, "ch4": { "label": "Trigger", "type": "momentary", "icon": "mouse-pointer-2.svg" } } },
+    { "name": "TV", "channelValue": 116, "icon": "tv.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" } } },
+    { "name": "Paparazzi", "channelValue": 135, "icon": "camera.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" } } },
+    { "name": "Candle/Fire", "channelValue": 152, "icon": "flame.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" } } },
+    { "name": "Bad Bulb", "channelValue": 170, "icon": "lightbulb-off.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" } } },
+    { "name": "Firework", "channelValue": 188, "icon": "sparkles.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }, "ch4": { "label": "Decay", "type": "fader", "icon": "trending-down.svg" } } },
+    { "name": "Explosion Auto", "channelValue": 206, "icon": "bomb.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }, "ch4": { "label": "Decay", "type": "fader", "icon": "trending-down.svg" } } },
+    { "name": "Explosion Manual", "channelValue": 224, "icon": "collision.svg", "controls": { "ch3": { "label": "Decay", "type": "fader", "icon": "trending-down.svg" }, "ch4": { "label": "Trigger", "type": "momentary", "icon": "mouse-pointer-2.svg" } } },
+    { "name": "Welding", "channelValue": 245, "icon": "sparkle.svg", "controls": { "ch3": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }, "ch4": { "label": "Decay", "type": "fader", "icon": "trending-down.svg" }, "ch5": { "label": "Pause (On/Off)", "type": "fader", "icon": "pause-circle.svg" } } }
+  ]
+}

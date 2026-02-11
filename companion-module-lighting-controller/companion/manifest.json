@@ -1,0 +1,31 @@
+{
+  "id": "lighting-controller",
+  "name": "DMX Lighting Controller",
+  "shortname": "dmxctrl",
+  "description": "Control DMX Lighting Controller presets via WebSocket",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "",
+  "bugs": "",
+  "maintainers": [
+    {
+      "name": "Mitch Anderson"
+    }
+  ],
+  "legacyIds": [],
+  "runtime": {
+    "type": "node18",
+    "api": "nodejs-ipc",
+    "apiVersion": "0.0.0",
+    "entrypoint": "../main.js"
+  },
+  "manufacturer": "Custom",
+  "products": [
+    "DMX Lighting Controller"
+  ],
+  "keywords": [
+    "dmx",
+    "lighting",
+    "presets"
+  ]
+}

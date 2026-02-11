@@ -1,0 +1,24 @@
+{
+  "name": "companion-module-lighting-controller",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "manufacturer": "Custom",
+  "products": [
+    "DMX Lighting Controller"
+  ],
+  "keywords": [
+    "Companion",
+    "DMX",
+    "Lighting",
+    "Presets"
+  ],
+  "dependencies": {
+    "@companion-module/base": "^1.10.0",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@companion-module/tools": "^2.0.4"
+  }
+}

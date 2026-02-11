@@ -1,0 +1,244 @@
+{
+  "fixture": "Aputure Nova P300c",
+  "channelCount": 10,
+  "modeChannel": "ch01",
+  "channels": {
+    "ch01": { "role": "mode-select", "label": "FX Select" },
+    "ch02": { "role": "dimmer", "label": "Intensity" },
+    "ch03": { "role": "dynamic", "label": "Param 1" },
+    "ch04": { "role": "dynamic", "label": "Param 2" },
+    "ch05": { "role": "dynamic", "label": "Param 3" },
+    "ch06": { "role": "dynamic", "label": "Param 4" },
+    "ch07": { "role": "dynamic", "label": "Param 5" },
+    "ch08": { "role": "dynamic", "label": "Param 6" },
+    "ch09": { "role": "dynamic", "label": "Param 7" },
+    "ch10": { "role": "dynamic", "label": "Param 8" }
+  },
+  "modes": [
+    {
+      "name": "HSB (Static)",
+      "channelValue": 95,
+      "icon": "sun.svg",
+      "colorWheelGroup": {
+        "hueChannel": "ch04",
+        "saturationChannel": "ch05",
+        "brightnessChannel": "ch02"
+      },
+      "defaults": { "ch03": 15, "ch08": 0 },
+      "controls": {
+        "ch04": { "label": "Hue", "type": "fader", "icon": "sun-medium.svg" },
+        "ch05": { "label": "Saturation", "type": "fader", "icon": "sun-medium.svg" }
+      }
+    },
+    {
+      "name": "Club Lights",
+      "channelValue": 2,
+      "icon": "zap.svg",
+      "controls": {
+        "ch03": { "label": "Colors", "type": "fader", "icon": "sparkles.svg" },
+        "ch04": { "label": "Speed", "type": "fader", "icon": "gauge.svg" },
+        "ch05": { "label": "Stop/Loop", "type": "fader", "icon": "repeat.svg" }
+      }
+    },
+    {
+      "name": "Paparazzi",
+      "channelValue": 15,
+      "icon": "camera.svg",
+      "controls": {
+        "ch03": { "label": "CCT", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "G/M", "type": "fader", "icon": "scale.svg" },
+        "ch05": { "label": "Frequency", "type": "fader", "icon": "timer.svg" }
+      }
+    },
+    {
+      "name": "Lightning",
+      "channelValue": 25,
+      "icon": "cloud-lightning.svg",
+      "controls": {
+        "ch03": { "label": "CCT", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "G/M", "type": "fader", "icon": "scale.svg" },
+        "ch05": { "label": "Frequency", "type": "fader", "icon": "timer.svg" },
+        "ch06": { "label": "Speed", "type": "fader", "icon": "gauge.svg" },
+        "ch07": { "label": "Trigger", "type": "momentary", "icon": "mouse-pointer-2.svg" }
+      }
+    },
+    {
+      "name": "TV",
+      "channelValue": 35,
+      "icon": "tv.svg",
+      "controls": {
+        "ch03": { "label": "CCT Range", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }
+      }
+    },
+    {
+      "name": "Candle",
+      "channelValue": 45,
+      "icon": "flame.svg",
+      "controls": {
+        "ch03": { "label": "CCT Range", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }
+      }
+    },
+    {
+      "name": "Fire",
+      "channelValue": 55,
+      "icon": "flame.svg",
+      "controls": {
+        "ch03": { "label": "CCT Range", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }
+      }
+    },
+    {
+      "name": "Strobe",
+      "channelValue": 65,
+      "icon": "zap.svg",
+      "colorWheelGroup": {
+        "hueChannel": "ch04",
+        "saturationChannel": "ch05",
+        "brightnessChannel": "ch02"
+      },
+      "defaults": { "ch03": 15 },
+      "controls": {
+        "ch06": {
+          "label": "Speed",
+          "type": "stepped",
+          "icon": "gauge.svg",
+          "steps": [
+            { "label": "1", "dmxValue": 5 },
+            { "label": "2", "dmxValue": 15 },
+            { "label": "3", "dmxValue": 25 },
+            { "label": "4", "dmxValue": 35 },
+            { "label": "5", "dmxValue": 45 },
+            { "label": "6", "dmxValue": 55 },
+            { "label": "7", "dmxValue": 65 },
+            { "label": "8", "dmxValue": 75 },
+            { "label": "9", "dmxValue": 85 },
+            { "label": "10", "dmxValue": 95 }
+          ],
+          "extraButtons": [
+            { "label": "Random", "dmxValue": 105, "icon": "sparkles.svg" }
+          ]
+        },
+        "ch07": { "label": "Stop / Loop", "type": "toggle", "icon": "repeat.svg" }
+      }
+    },
+    {
+      "name": "Explosion",
+      "channelValue": 75,
+      "icon": "bomb.svg",
+      "controls": {
+        "ch04": { "label": "CCT", "type": "fader", "icon": "sun-medium.svg" },
+        "ch05": { "label": "G/M", "type": "fader", "icon": "scale.svg" },
+        "ch06": { "label": "Decay", "type": "fader", "icon": "trending-down.svg" },
+        "ch07": { "label": "Trigger", "type": "momentary", "icon": "mouse-pointer-2.svg" }
+      }
+    },
+    {
+      "name": "Faulty Bulb",
+      "channelValue": 85,
+      "icon": "lightbulb-off.svg",
+      "controls": {
+        "ch04": { "label": "CCT", "type": "fader", "icon": "sun-medium.svg" },
+        "ch05": { "label": "G/M", "type": "fader", "icon": "scale.svg" },
+        "ch07": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }
+      }
+    },
+    {
+      "name": "Pulsing",
+      "channelValue": 95,
+      "icon": "activity.svg",
+      "colorWheelGroup": {
+        "hueChannel": "ch04",
+        "saturationChannel": "ch05",
+        "brightnessChannel": "ch02"
+      },
+      "defaults": { "ch03": 15, "ch08": 0 },
+      "controls": {
+        "ch07": { "label": "Speed", "type": "fader", "icon": "gauge.svg" },
+        "ch08": { "label": "Stop / Loop", "type": "toggle", "icon": "repeat.svg" }
+      }
+    },
+    {
+      "name": "Welding",
+      "channelValue": 105,
+      "icon": "sparkle.svg",
+      "colorWheelGroup": {
+        "hueChannel": "ch04",
+        "saturationChannel": "ch05",
+        "brightnessChannel": "ch02"
+      },
+      "defaults": { "ch03": 15, "ch08": 0 },
+      "controls": {
+        "ch06": { "label": "Frequency", "type": "fader", "icon": "timer.svg" },
+        "ch07": { "label": "Min Brightness", "type": "fader", "icon": "sun-medium.svg" },
+        "ch08": { "label": "Stop / Pause", "type": "toggle", "icon": "pause-circle.svg" }
+      }
+    },
+    {
+      "name": "Cop Car",
+      "channelValue": 115,
+      "icon": "collision.svg",
+      "controls": {
+        "ch03": {
+          "label": "Colors",
+          "type": "stepped",
+          "icon": "sparkles.svg",
+          "steps": [
+            { "label": "Red", "dmxValue": 5 },
+            { "label": "Blue", "dmxValue": 15 },
+            { "label": "Red+Blue", "dmxValue": 25 },
+            { "label": "Blue+White", "dmxValue": 35 },
+            { "label": "R+B+W", "dmxValue": 45 }
+          ]
+        },
+        "ch04": {
+          "label": "Frequency",
+          "type": "stepped",
+          "icon": "timer.svg",
+          "steps": [
+            { "label": "1", "dmxValue": 5 },
+            { "label": "2", "dmxValue": 15 },
+            { "label": "3", "dmxValue": 25 },
+            { "label": "4", "dmxValue": 35 },
+            { "label": "5", "dmxValue": 45 },
+            { "label": "6", "dmxValue": 55 },
+            { "label": "7", "dmxValue": 65 },
+            { "label": "8", "dmxValue": 75 },
+            { "label": "9", "dmxValue": 85 },
+            { "label": "10", "dmxValue": 95 }
+          ]
+        },
+        "ch05": { "label": "Stop / Loop", "type": "toggle", "icon": "repeat.svg" }
+      }
+    },
+    {
+      "name": "Color Chase",
+      "channelValue": 125,
+      "icon": "repeat.svg",
+      "controls": {
+        "ch03": { "label": "Saturation", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }
+      }
+    },
+    {
+      "name": "Party Lights",
+      "channelValue": 135,
+      "icon": "sparkles.svg",
+      "controls": {
+        "ch03": { "label": "Saturation", "type": "fader", "icon": "sun-medium.svg" },
+        "ch04": { "label": "Speed", "type": "fader", "icon": "gauge.svg" }
+      }
+    },
+    {
+      "name": "Firework",
+      "channelValue": 145,
+      "icon": "sparkles.svg",
+      "controls": {
+        "ch03": { "label": "Colors", "type": "fader", "icon": "sparkles.svg" },
+        "ch04": { "label": "Frequency", "type": "fader", "icon": "timer.svg" },
+        "ch05": { "label": "Decay", "type": "fader", "icon": "trending-down.svg" }
+      }
+    }
+  ]
+}

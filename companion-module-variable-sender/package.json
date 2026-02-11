@@ -1,0 +1,22 @@
+{
+  "name": "companion-module-variable-sender",
+  "version": "1.0.0",
+  "main": "main.js",
+  "type": "commonjs",
+  "license": "MIT",
+  "manufacturer": "Custom",
+  "products": [
+    "Variable Sender"
+  ],
+  "keywords": [
+    "Companion",
+    "Variables"
+  ],
+  "dependencies": {
+    "@companion-module/base": "^1.10.0",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@companion-module/tools": "^2.0.4"
+  }
+}

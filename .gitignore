@@ -1,0 +1,213 @@
+# ============================================
+# DMX Controller App - .gitignore
+# ============================================
+
+# -------------------- Dependencies --------------------
+node_modules/
+.pnp/
+.pnp.js
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# -------------------- Build Outputs --------------------
+dist/
+dist-electron/
+dist-renderer/
+build/
+out/
+release/
+
+# Vite build cache
+.vite/
+vite.config.*.timestamp-*
+
+# TypeScript compiled output
+*.tsbuildinfo
+*.js.map
+*.d.ts.map
+
+# -------------------- Packaged Applications --------------------
+*.dmg
+*.app
+*.pkg
+*.exe
+*.msi
+*.zip
+*.tar.gz
+*.deb
+*.rpm
+*.AppImage
+
+# Electron builder output
+electron-builder.yml.bak
+mac/
+mac-arm64/
+mac-x64/
+win/
+win-unpacked/
+linux/
+linux-unpacked/
+
+# -------------------- macOS --------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# -------------------- Windows --------------------
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.lnk
+
+# -------------------- Linux --------------------
+*~
+.directory
+.Trash-*
+.nfs*
+
+# -------------------- Logs --------------------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+electron-debug.log
+
+# -------------------- Environment Variables --------------------
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env.*.local
+
+# -------------------- IDE / Editors --------------------
+# VSCode
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.history/
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+Session.vim
+Sessionx.vim
+.netrwhist
+tags
+[._]*.un~
+
+# Emacs
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+.\#*
+
+# -------------------- Testing --------------------
+coverage/
+*.lcov
+.nyc_output/
+.jest/
+.cache/
+*.spec.js
+*.test.js
+
+# -------------------- Electron Specific --------------------
+# Electron build cache
+.electron-gyp/
+.electron-symbols/
+
+# Native module binaries
+*.node
+
+# Serialport build artifacts
+build/Release/
+
+# -------------------- Temporary Files --------------------
+*.tmp
+*.temp
+*.swp
+*.swo
+*.bak
+*.orig
+*~
+
+# -------------------- Optional npm cache --------------------
+.npm
+
+# -------------------- Optional REPL history --------------------
+.node_repl_history
+
+# -------------------- Local Config --------------------
+config.local.json
+settings.local.json
+
+# -------------------- Security --------------------
+*.pem
+*.key
+*.cert
+*.csr
+.secrets/
+
+# -------------------- Development Scripts --------------------
+download.py
+download.sh
+start_app.sh
+*.zip
+
+# -------------------- Text Notes/Temp Files --------------------
+*.txt
+!README.txt
+!LICENSE.txt
+new-fixture/
+
+# -------------------- Misc --------------------
+.eslintcache
+.stylelintcache
+.parcel-cache/
+.cache/
+*.pid
+*.seed
+*.pid.lock

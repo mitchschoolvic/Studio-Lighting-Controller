@@ -1,0 +1,2078 @@
+/* ============================================================
+   DMX Controller — Dark Theme Stylesheet
+   Background: #1a1a2e | Surfaces: #16213e | Accents: #0f3460
+   ============================================================ */
+
+:root {
+  --bg-primary: #1a1a2e;
+  --bg-surface: #16213e;
+  --bg-elevated: #1e2a4a;
+  --bg-input: #0d1526;
+  --accent-primary: #0f3460;
+  --accent-hover: #1a4a80;
+  --accent-active: #2563eb;
+  --accent-glow: #3b82f6;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border-color: #2d3a56;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --fader-track: #0d1526;
+  --fader-fill: #3b82f6;
+  --fader-thumb: #e2e8f0;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+  --radius: 8px;
+  --radius-sm: 4px;
+  --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 20px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border-color);
+  min-height: 52px;
+  -webkit-app-region: drag;
+}
+
+.app-header .header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.app-header h1 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 0.5px;
+}
+
+.app-header .version-badge {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 2px 8px;
+  background: var(--accent-primary);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.3px;
+  font-family: var(--font-mono);
+}
+
+.app-header .status-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  -webkit-app-region: no-drag;
+}
+
+.app-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  min-width: 100px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  padding: 16px 8px;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.top-section {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+}
+
+.bottom-section {
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-surface);
+}
+
+/* ============================================================
+   Status Bar
+   ============================================================ */
+
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-dot.connected {
+  background: var(--success);
+  box-shadow: 0 0 6px var(--success);
+}
+
+.status-dot.disconnected {
+  background: var(--error);
+  box-shadow: 0 0 6px var(--error);
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+/* ============================================================
+   Master Fader
+   ============================================================ */
+
+.master-fader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.master-fader label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+}
+
+.master-fader .fader-value {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-glow);
+}
+
+.vertical-fader {
+  -webkit-appearance: none;
+  appearance: none;
+  writing-mode: vertical-lr;
+  direction: rtl;
+  width: 40px;
+  height: 200px;
+  background: transparent;
+  cursor: pointer;
+}
+
+.vertical-fader::-webkit-slider-runnable-track {
+  width: 6px;
+  height: 100%;
+  background: var(--fader-track);
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+}
+
+.vertical-fader::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 12px;
+  background: var(--fader-thumb);
+  border-radius: 3px;
+  border: 1px solid var(--border-color);
+  cursor: grab;
+  margin-left: -9px;
+}
+
+.vertical-fader::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  background: var(--accent-glow);
+}
+
+/* ============================================================
+   Channel Fader
+   ============================================================ */
+
+.channel-fader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 4px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  min-width: 60px;
+}
+
+.channel-fader .channel-number {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.channel-fader .channel-value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.channel-fader .channel-label {
+  font-size: 9px;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 56px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.channel-fader .vertical-fader {
+  height: 150px;
+}
+
+/* ============================================================
+   Fader Bank
+   ============================================================ */
+
+.fader-bank {
+  background: var(--bg-surface);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.fader-bank-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.fader-bank-header h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.fader-bank-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fader-bank-grid {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+/* ============================================================
+   Fixture Panel
+   ============================================================ */
+
+.fixture-panel {
+  background: var(--bg-surface);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.fixture-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--border-color);
+  overflow-x: auto;
+}
+
+.fixture-tab {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+
+.fixture-tab:hover {
+  color: var(--text-primary);
+  background: var(--bg-elevated);
+}
+
+.fixture-tab.active {
+  color: var(--accent-glow);
+  border-bottom-color: var(--accent-glow);
+}
+
+.fixture-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fixture-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fixture-card-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.fixture-card-header .fixture-type {
+  font-size: 12px;
+  color: var(--text-muted);
+  background: var(--bg-input);
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+.color-mode-badge {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+}
+
+.color-mode-badge.rgb {
+  color: #4fc3f7;
+  background: rgba(79, 195, 247, 0.15);
+  border: 1px solid rgba(79, 195, 247, 0.3);
+}
+
+.color-mode-badge.hsb {
+  color: #ab47bc;
+  background: rgba(171, 71, 188, 0.15);
+  border: 1px solid rgba(171, 71, 188, 0.3);
+}
+
+.color-mode-selector {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.fixture-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* ============================================================
+   Color Wheel
+   ============================================================ */
+
+/* Outer wrapper: horizontal row — [Dim slider] [Sat slider] [Color donut] */
+.color-wheel-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+}
+
+/* Vertical Slider Component */
+.vertical-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.vertical-slider-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+  min-width: 50px;
+}
+
+.vertical-slider-track {
+  width: 50px;
+  height: 220px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 25px;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.vertical-slider-fill {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+  border-radius: 25px;
+  transition: height 0.05s ease-out;
+  pointer-events: none;
+}
+
+.vertical-slider-value {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  min-width: 50px;
+  text-align: center;
+}
+
+/* Temperature (warm) slider variant */
+.vertical-slider-track--warm {
+  background: linear-gradient(to top, rgba(255, 147, 41, 0.15), rgba(120, 180, 255, 0.15));
+  border: 1px solid rgba(255, 180, 80, 0.2);
+}
+
+.vertical-slider-fill--warm {
+  /* Dynamic color applied via inline style based on Kelvin value */
+}
+
+/* Color wheel container */
+.color-wheel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-wheel-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.color-wheel-canvas {
+  cursor: crosshair;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.color-preview {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--border-color);
+}
+
+.color-values {
+  display: flex;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.color-values span {
+  padding: 2px 6px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+}
+
+/* ============================================================
+   Preset Grid
+   ============================================================ */
+
+.preset-grid {
+  padding: 16px;
+}
+
+.preset-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.preset-grid-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.preset-grid-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.preset-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 8px;
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  cursor: pointer;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  transition: all 0.15s;
+  min-height: 48px;
+  touch-action: manipulation;
+}
+
+.preset-button:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.preset-button:active {
+  transform: scale(0.98);
+}
+
+.preset-button.active {
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+}
+
+.preset-button.add-preset {
+  background: var(--bg-elevated);
+  border: 2px dashed var(--border-color);
+  color: var(--text-secondary);
+  font-size: 24px;
+}
+
+.preset-button.add-preset:hover {
+  border-color: var(--accent-glow);
+  color: var(--accent-glow);
+}
+
+/* Preset button wrapper with edit/delete actions */
+.preset-button-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 2px solid transparent;
+  transition: border-color 0.15s;
+}
+
+.preset-button-wrapper.active {
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+}
+
+.preset-button-wrapper .preset-button {
+  border-radius: 0;
+  border: none;
+  flex: 1;
+}
+
+.preset-button-wrapper .preset-button.active {
+  border: none;
+  box-shadow: none;
+}
+
+.preset-button-actions {
+  display: flex;
+  background: rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.preset-action-btn {
+  flex: 1;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+  touch-action: manipulation;
+}
+
+.preset-action-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+.preset-action-btn.preset-action-delete:hover {
+  background: rgba(239, 68, 68, 0.3);
+  color: var(--error);
+}
+
+.preset-action-btn+.preset-action-btn {
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   Fixture Editor (Modal)
+   ============================================================ */
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  background: var(--bg-surface);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 24px;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.modal-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 4px;
+  line-height: 1;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   Form Elements
+   ============================================================ */
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-input {
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: var(--font-sans);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  border-color: var(--accent-glow);
+}
+
+.form-select {
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  touch-action: manipulation;
+}
+
+.btn-primary {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-input);
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  background: transparent;
+  color: var(--error);
+  border: 1px solid var(--error);
+}
+
+.btn-danger:hover {
+  background: var(--error);
+  color: white;
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.btn-icon {
+  padding: 6px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.btn-icon:hover {
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   Channel Row (Fixture Editor)
+   ============================================================ */
+
+.channel-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+.channel-row .form-input {
+  flex: 1;
+}
+
+.channel-row .channel-number-input {
+  width: 80px;
+}
+
+/* ============================================================
+   Horizontal Slider (for temperature, hue, saturation)
+   ============================================================ */
+
+.horizontal-slider-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  min-width: 180px;
+}
+
+.horizontal-slider-container label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.horizontal-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: var(--fader-track);
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+}
+
+.horizontal-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--fader-thumb);
+  border-radius: 50%;
+  border: 2px solid var(--border-color);
+  cursor: grab;
+}
+
+.horizontal-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  background: var(--accent-glow);
+}
+
+.slider-value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+/* ============================================================
+   Mode Dropdown
+   ============================================================ */
+
+.mode-control {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  min-width: 140px;
+}
+
+.mode-control label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   Fixture Editor Drawer
+   ============================================================ */
+
+.fixture-editor-drawer {
+  padding: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.fixture-editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  cursor: pointer;
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fixture-editor-header:hover {
+  background: var(--accent-primary);
+}
+
+.fixture-editor-header h3 {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.fixture-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fixture-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.fixture-list-item .fixture-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.fixture-list-item .fixture-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.fixture-list-item .fixture-channels {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.fixture-actions {
+  display: flex;
+  gap: 4px;
+}
+
+/* ============================================================
+   Empty State
+   ============================================================ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  color: var(--text-muted);
+  gap: 12px;
+}
+
+.empty-state p {
+  font-size: 14px;
+}
+
+/* ============================================================
+   Alerts / Warnings
+   ============================================================ */
+
+.alert {
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.alert-warning {
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid var(--warning);
+  color: var(--warning);
+}
+
+.alert-error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--error);
+  color: var(--error);
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============================================================
+   Collapsible Section
+   ============================================================ */
+
+.collapsible-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 0;
+  cursor: pointer;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.collapsible-toggle:hover {
+  color: var(--text-primary);
+}
+
+.collapsible-arrow {
+  transition: transform 0.2s;
+  font-size: 10px;
+}
+
+.collapsible-arrow.open {
+  transform: rotate(90deg);
+}
+
+/* ============================================================
+   Profile Fixture Layout (stacked: controls top, buttons bottom)
+   ============================================================ */
+
+/* Row 1 — mode controls (ColorWheel, faders, toggles, stepped).
+   Horizontal flex so items sit side-by-side.
+   min-height prevents the card from collapsing when a simple mode
+   has fewer controls than a complex one.                          */
+.profile-controls-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  min-height: 200px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* Row 2 — effect buttons. Width is stable regardless of active mode. */
+.profile-effects-row {
+  width: 100%;
+}
+
+/* — Effect Button Grid — */
+
+.effect-grid {
+  display: grid;
+  /* Columns are defined inline via JS to enforce row count */
+  gap: 8px;
+  flex: 1;
+}
+
+.effect-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 10px 6px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  min-height: 100px;
+}
+
+.effect-btn:hover {
+  border-color: var(--accent-glow);
+  color: var(--text-primary);
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.effect-btn.active {
+  border-color: var(--accent-glow);
+  background: rgba(56, 189, 248, 0.12);
+  color: var(--accent-glow);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15), inset 0 0 8px rgba(56, 189, 248, 0.05);
+}
+
+.effect-icon {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.effect-btn:hover .effect-icon {
+  opacity: 0.9;
+}
+
+.effect-btn.active .effect-icon {
+  opacity: 1;
+}
+
+.effect-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  line-height: 1.2;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  pointer-events: none;
+}
+
+/* ============================================================
+   DMX Toggle Switch (binary on/off for profile controls)
+   ============================================================ */
+
+.dmx-toggle-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 4px;
+}
+
+.dmx-toggle-label {
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-secondary);
+  opacity: 0.5;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.dmx-toggle-label.active {
+  opacity: 1;
+  color: var(--accent-glow);
+}
+
+.dmx-toggle-track {
+  position: relative;
+  width: 28px;
+  height: 56px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.dmx-toggle-track:hover {
+  border-color: var(--accent-glow);
+}
+
+.dmx-toggle-track.on {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+}
+
+.dmx-toggle-thumb {
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+  width: 20px;
+  height: 20px;
+  background: var(--text-secondary);
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.dmx-toggle-track.on .dmx-toggle-thumb {
+  bottom: auto;
+  top: 3px;
+  background: var(--accent-glow);
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+}
+
+/* ============================================================
+   Stepped Control (discrete value slider with notches)
+   ============================================================ */
+
+.stepped-control {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 6px;
+  min-width: 80px;
+}
+
+.stepped-control-label {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--text-secondary);
+  user-select: none;
+}
+
+.stepped-slider-track {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: stretch;
+  gap: 2px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 4px;
+  width: 120px;
+  touch-action: none;
+  user-select: none;
+}
+
+.stepped-slider-track.dragging {
+  border-color: var(--accent-glow);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+}
+
+.stepped-notch {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.12s ease;
+  color: var(--text-secondary);
+  min-height: 36px;
+  touch-action: manipulation;
+}
+
+.stepped-notch:hover {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.stepped-notch.active {
+  background: rgba(56, 189, 248, 0.18);
+  color: var(--accent-glow);
+}
+
+.stepped-notch-pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-color);
+  flex-shrink: 0;
+  transition: all 0.12s ease;
+}
+
+.stepped-notch.active .stepped-notch-pip {
+  background: var(--accent-glow);
+  box-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+}
+
+.stepped-notch-label {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  user-select: none;
+}
+
+.stepped-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-glow);
+  min-height: 20px;
+  text-align: center;
+  user-select: none;
+}
+
+.stepped-extra-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  user-select: none;
+  width: 100%;
+  min-height: 44px;
+  touch-action: manipulation;
+}
+
+.stepped-extra-btn:hover {
+  border-color: var(--accent-glow);
+  color: var(--text-primary);
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.stepped-extra-btn.active {
+  border-color: var(--accent-glow);
+  background: rgba(56, 189, 248, 0.15);
+  color: var(--accent-glow);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+}
+
+.stepped-extra-icon {
+  width: 16px;
+  height: 16px;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.stepped-extra-btn.active .stepped-extra-icon {
+  opacity: 1;
+}
+
+/* ============================================================
+   Momentary Button
+   ============================================================ */
+
+.momentary-button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  min-width: 80px;
+}
+
+.momentary-button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  background: rgba(239, 68, 68, 0.1);
+  color: rgba(239, 68, 68, 0.8);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  transition: all 0.1s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.momentary-button:hover {
+  border-color: rgba(239, 68, 68, 0.8);
+  background: rgba(239, 68, 68, 0.2);
+}
+
+.momentary-button.pressed {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.6);
+  color: #fff;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5), 0 0 40px rgba(239, 68, 68, 0.2);
+  transform: scale(0.95);
+}
+
+.momentary-icon {
+  pointer-events: none;
+}
+
+.momentary-icon-img {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.momentary-button.pressed .momentary-icon-img {
+  filter: brightness(0) invert(1);
+}
+
+.momentary-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  text-align: center;
+}
+
+/* ============================================================
+   Profile Editor Styles
+   ============================================================ */
+
+.editor-mode-selector {
+  display: flex;
+  gap: 6px;
+}
+
+.profile-channel-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  border: 1px solid var(--border-color);
+}
+
+.profile-preview-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+}
+
+.profile-preview-addr {
+  font-weight: 700;
+  color: var(--accent-glow);
+  min-width: 60px;
+  font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.profile-preview-label {
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.profile-preview-role {
+  color: var(--text-secondary);
+  font-size: 10px;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+.profile-modes-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.profile-mode-tag {
+  padding: 3px 8px;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #a78bfa;
+}
+
+/* ============================================================
+   View Tabs (Header)
+   ============================================================ */
+
+.view-tabs {
+  display: flex;
+  gap: 2px;
+  margin-left: 20px;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  padding: 3px;
+  -webkit-app-region: no-drag;
+}
+
+.view-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border: none;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-tab:hover {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.view-tab.active {
+  color: var(--text-primary);
+  background: var(--accent-primary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.view-tab svg {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   Canvas View Layout
+   ============================================================ */
+
+.canvas-view {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+
+.canvas-view-main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+}
+
+.canvas-view-center {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.canvas-view-presets {
+  flex-shrink: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+/* Canvas toolbar (edit toggle) */
+.canvas-toolbar {
+  display: flex;
+  align-items: center;
+  padding: 6px 12px;
+  flex-shrink: 0;
+}
+
+.canvas-edit-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  font-size: 11px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.canvas-edit-toggle:hover {
+  border-color: var(--accent-glow);
+  color: var(--text-primary);
+}
+
+.canvas-edit-toggle.active {
+  background: var(--accent-primary);
+  border-color: var(--accent-glow);
+  color: var(--text-primary);
+}
+
+/* Canvas area wrapper (relative container for palette overlay) */
+.canvas-area-wrapper {
+  flex: 1;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  min-height: 0;
+}
+
+/* Left panel content (palette/drawer) swaps based on mode */
+.canvas-left-panel {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ============================================================
+   Studio Canvas
+   ============================================================ */
+
+.studio-canvas-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
+  min-height: 0;
+}
+
+.studio-canvas {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: #2a2a2a;
+}
+
+.canvas-watermark {
+  font-size: 72px;
+  font-weight: 700;
+  fill: rgba(255, 255, 255, 0.02);
+  letter-spacing: 12px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.canvas-empty-hint {
+  font-size: 14px;
+  fill: var(--text-muted);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ============================================================
+   Canvas Fixture (SVG)
+   ============================================================ */
+
+.canvas-fixture {
+  transition: opacity 0.15s ease;
+}
+
+.canvas-fixture:hover .canvas-fixture-body {
+  stroke: var(--accent-glow);
+  stroke-width: 1.5;
+}
+
+.canvas-fixture.dragging {
+  opacity: 0.85;
+}
+
+.canvas-fixture-glow {
+  transition: fill 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.canvas-fixture-barn-door {
+  fill: var(--bg-elevated);
+  stroke: var(--border-color);
+  stroke-width: 0.75;
+  stroke-linejoin: round;
+}
+
+.canvas-fixture-body {
+  fill: var(--bg-elevated);
+  stroke: var(--border-color);
+  stroke-width: 1;
+  transition: stroke 0.15s ease, stroke-width 0.15s ease;
+}
+
+.canvas-fixture.selected .canvas-fixture-body {
+  stroke: var(--accent-glow);
+  stroke-width: 2;
+}
+
+.canvas-fixture.view-mode {
+  cursor: pointer;
+}
+
+.canvas-fixture.edit-mode {
+  cursor: grab;
+}
+
+.canvas-fixture.edit-mode.dragging {
+  cursor: grabbing;
+}
+
+.canvas-fixture-label {
+  fill: var(--text-primary);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  pointer-events: none;
+  user-select: none;
+}
+
+.canvas-fixture-value {
+  fill: var(--accent-glow);
+  font-size: 10px;
+  font-weight: 500;
+  font-family: var(--font-mono);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* External label (when text doesn't fit inside the fixture) */
+.canvas-fixture-ext-label-bg {
+  fill: var(--bg-elevated);
+  stroke: var(--border-color);
+  stroke-width: 1;
+  opacity: 0.92;
+}
+
+.canvas-fixture.selected .canvas-fixture-ext-label-bg {
+  stroke: var(--accent-glow);
+}
+
+.canvas-fixture-ext-label-line {
+  stroke: var(--border-color);
+  stroke-width: 1;
+  stroke-dasharray: 3 2;
+  opacity: 0.6;
+}
+
+.canvas-fixture.selected .canvas-fixture-ext-label-line {
+  stroke: var(--accent-glow);
+  opacity: 0.8;
+}
+
+/* Rotation handle */
+.rotation-line {
+  pointer-events: none;
+}
+
+.rotation-handle {
+  fill: var(--bg-elevated);
+  stroke: var(--accent-glow);
+  stroke-width: 1.5;
+  cursor: crosshair;
+  transition: fill 0.15s ease;
+}
+
+.rotation-handle:hover {
+  fill: var(--accent-primary);
+}
+
+/* Scale handles (corner resize) */
+.scale-handle {
+  fill: var(--bg-elevated);
+  stroke: var(--accent-glow);
+  stroke-width: 1.5;
+  transition: fill 0.15s ease;
+}
+
+.scale-handle:hover {
+  fill: var(--accent-primary);
+}
+
+.rotation-icon {
+  fill: var(--accent-glow);
+  font-family: var(--font-sans);
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ============================================================
+   Fixture Palette
+   ============================================================ */
+
+.fixture-palette {
+  width: 100%;
+  flex: 1;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.fixture-palette-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 12px 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.fixture-palette-header h3 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fixture-palette-count {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.fixture-palette-section {
+  padding: 8px 0;
+}
+
+.fixture-palette-section-label {
+  padding: 4px 12px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.fixture-palette-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  cursor: grab;
+  transition: background 0.15s ease;
+  border-left: 2px solid transparent;
+}
+
+.fixture-palette-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.fixture-palette-item:active {
+  cursor: grabbing;
+}
+
+.fixture-palette-item.placed {
+  cursor: default;
+  opacity: 0.7;
+}
+
+.fixture-palette-item.placed.active {
+  opacity: 1;
+  background: rgba(59, 130, 246, 0.08);
+  border-left-color: var(--accent-glow);
+}
+
+.fixture-palette-item-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  opacity: 0.5;
+}
+
+.fixture-palette-item-icon.on-canvas {
+  opacity: 0.8;
+}
+
+.fixture-palette-item-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fixture-palette-item-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fixture-palette-item-type {
+  font-size: 9px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.fixture-palette-drag-hint {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  font-size: 14px;
+  opacity: 0.4;
+  line-height: 1;
+}
+
+.fixture-palette-check {
+  flex-shrink: 0;
+  color: var(--success);
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.fixture-palette-remove {
+  flex-shrink: 0;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 4px;
+  line-height: 1;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.fixture-palette-remove:hover {
+  color: var(--danger, #ef4444);
+  background: rgba(239, 68, 68, 0.12);
+}
+
+.fixture-palette-empty {
+  padding: 24px 12px;
+  text-align: center;
+}
+
+.fixture-palette-empty p {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.fixture-palette-empty-hint {
+  font-size: 10px !important;
+  color: var(--text-muted) !important;
+  opacity: 0.7;
+}
+
+/* ============================================================
+   Fixture Drawer (Right Panel — Canvas View)
+   ============================================================ */
+
+.fixture-drawer {
+  width: 320px;
+  min-width: 320px;
+  max-width: 320px;
+  background: var(--bg-surface);
+  border-right: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.fixture-drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.fixture-drawer-header h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.fixture-drawer-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fixture-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+}
+
+.fixture-drawer-body .fixture-card {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.fixture-drawer-body .fixture-card-header {
+  display: none;
+}
+
+/* Placeholder (no fixture selected) */
+.fixture-drawer-placeholder {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px;
+  text-align: center;
+}
+
+.fixture-drawer-placeholder-icon {
+  color: var(--text-muted);
+  opacity: 0.3;
+}
+
+.fixture-drawer-placeholder-text {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  max-width: 200px;
+}
