@@ -32,25 +32,35 @@ echo -e "${GREEN}New version: ${NEW_VERSION}${NC}"
 npm version "$NEW_VERSION" --no-git-tag-version
 
 echo ""
-echo -e "${BLUE}Step 1/5: Installing dependencies...${NC}"
+echo -e "${BLUE}Step 1/6: Preparing app icon...${NC}"
+# Copy icon from Icon directory to assets directory for electron-builder
+if [ -f "Icon/app-icon_1024x1024_1024x1024.icns" ]; then
+    cp "Icon/app-icon_1024x1024_1024x1024.icns" "assets/icon.icns"
+    echo -e "${GREEN}✓ Icon copied to assets/icon.icns${NC}"
+else
+    echo -e "${RED}Warning: Icon file not found at Icon/app-icon_1024x1024_1024x1024.icns${NC}"
+fi
+
+echo ""
+echo -e "${BLUE}Step 2/6: Installing dependencies...${NC}"
 npm install
 
 echo ""
-echo -e "${BLUE}Step 2/5: Rebuilding native modules...${NC}"
+echo -e "${BLUE}Step 3/6: Rebuilding native modules...${NC}"
 npm run rebuild
 
 echo ""
-echo -e "${BLUE}Step 3/5: Building application...${NC}"
+echo -e "${BLUE}Step 4/6: Building application...${NC}"
 npm run build
 
 echo ""
-echo -e "${BLUE}Step 4/5: Packaging for macOS (Apple Silicon)...${NC}"
+echo -e "${BLUE}Step 5/6: Packaging for macOS (Apple Silicon)...${NC}"
 # Set environment variables for adhoc signing
 export CSC_IDENTITY_AUTO_DISCOVERY=false
 npm run package
 
 echo ""
-echo -e "${BLUE}Step 5/5: Locating build artifacts...${NC}"
+echo -e "${BLUE}Step 6/6: Locating build artifacts...${NC}"
 
 # Find the generated files
 DMG_FILE=$(find dist -name "*.dmg" -type f | head -n 1)

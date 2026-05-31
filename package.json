@@ -1,6 +1,6 @@
 {
   "name": "dmx-controller-app",
-  "version": "1.0.6",
+  "version": "1.0.9",
   "description": "Professional DMX Lighting Control Application",
   "main": "dist/main/index.js",
   "author": "Lighting Controller",

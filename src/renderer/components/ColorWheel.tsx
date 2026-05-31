@@ -54,7 +54,7 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({
   // Track the last RGB we generated from our sliders to avoid sync loops
   const lastGeneratedRGB = useRef({ r: 0, g: 0, b: 0 });
   
-  const size = 180;
+  const size = 220;
   const radius = size / 2;
   const innerRadius = radius * 0.55; // donut hole
   const ringWidth = radius - innerRadius;
@@ -313,27 +313,7 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({
 
   return (
     <div className="color-wheel-wrapper">
-      {/* Dimmer / Brightness slider */}
-      <VerticalSlider
-        label={isHSB ? 'Brt.' : 'Dim.'}
-        value={dimmer}
-        min={0}
-        max={255}
-        onChange={handleDimmerChange}
-        showPercentage
-      />
-
-      {/* Saturation slider */}
-      <VerticalSlider
-        label="Sat."
-        value={saturation}
-        min={0}
-        max={255}
-        onChange={handleSaturationChange}
-        showPercentage
-      />
-
-      {/* Hue donut */}
+      {/* Hue donut — top */}
       <div className="color-wheel-container">
         <div className="color-wheel-label">Color</div>
         <canvas
@@ -370,6 +350,26 @@ export const ColorWheel: React.FC<ColorWheelProps> = ({
             </>
           )}
         </div>
+      </div>
+
+      {/* Dimmer + Saturation sliders — below */}
+      <div className="color-wheel-sliders-row">
+        <VerticalSlider
+          label={isHSB ? 'Brt.' : 'Dim.'}
+          value={dimmer}
+          min={0}
+          max={255}
+          onChange={handleDimmerChange}
+          showPercentage
+        />
+        <VerticalSlider
+          label="Sat."
+          value={saturation}
+          min={0}
+          max={255}
+          onChange={handleSaturationChange}
+          showPercentage
+        />
       </div>
     </div>
   );

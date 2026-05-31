@@ -143,6 +143,7 @@ export const StudioCanvas: React.FC<StudioCanvasProps> = ({
         viewBox={`0 0 ${CANVAS_WIDTH} ${CANVAS_HEIGHT}`}
         preserveAspectRatio="xMidYMid meet"
         onClick={handleBackgroundClick}
+        style={{ touchAction: editMode ? 'none' : 'auto' }}
       >
         {/* Grid pattern */}
         <defs>

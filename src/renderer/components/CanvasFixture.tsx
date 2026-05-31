@@ -276,7 +276,7 @@ export const CanvasFixture: React.FC<CanvasFixtureProps> = ({
       onPointerUp={handlePointerUp}
       onPointerCancel={handlePointerUp}
       onClick={handleClick}
-      style={{ cursor: editMode ? (isDragging ? 'grabbing' : 'grab') : 'pointer' }}
+      style={{ cursor: editMode ? (isDragging ? 'grabbing' : 'grab') : 'pointer', touchAction: editMode ? 'none' : 'auto' }}
     >
       {/* SVG defs: glow blur filter, gradient, and cone clip */}
       <defs>

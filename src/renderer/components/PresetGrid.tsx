@@ -117,12 +117,7 @@ export const PresetGrid: React.FC<PresetGridProps> = ({ socket }) => {
 
   return (
     <div className="preset-grid">
-      <div className="preset-grid-header">
-        <h3>Presets</h3>
-        <button className="btn btn-secondary btn-sm" onClick={() => setShowSaveDialog(true)}>
-          + Save Current
-        </button>
-      </div>
+      <span className="preset-grid-label">Presets</span>
 
       <div className="preset-grid-items">
         {presets.map((preset) => (
@@ -138,10 +133,10 @@ export const PresetGrid: React.FC<PresetGridProps> = ({ socket }) => {
           />
         ))}
         <button
-          className="preset-button add-preset"
+          className="preset-add-btn"
           onClick={() => setShowSaveDialog(true)}
         >
-          +
+          + Save current
         </button>
       </div>
 

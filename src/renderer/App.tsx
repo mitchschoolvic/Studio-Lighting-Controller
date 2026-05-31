@@ -92,9 +92,8 @@ export const App: React.FC = () => {
         <div className="sidebar">
           <MasterFader value={master} onChange={setMasterDimmer} />
           <button
-            className="btn btn-danger btn-sm"
+            className="blackout-btn"
             onClick={() => blackout(1000)}
-            style={{ width: '100%', textAlign: 'center' }}
           >
             Blackout
           </button>

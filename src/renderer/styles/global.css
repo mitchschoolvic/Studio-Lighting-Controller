@@ -1,30 +1,30 @@
 /* ============================================================
    DMX Controller — Dark Theme Stylesheet
-   Background: #1a1a2e | Surfaces: #16213e | Accents: #0f3460
+   Background: #111111 | Surfaces: #1a1a1a | Accents: neutral
    ============================================================ */
 
 :root {
-  --bg-primary: #1a1a2e;
-  --bg-surface: #16213e;
-  --bg-elevated: #1e2a4a;
-  --bg-input: #0d1526;
-  --accent-primary: #0f3460;
-  --accent-hover: #1a4a80;
-  --accent-active: #2563eb;
-  --accent-glow: #3b82f6;
+  --bg-primary: #111111;
+  --bg-surface: #1a1a1a;
+  --bg-elevated: #222222;
+  --bg-input: #0d0d0d;
+  --accent-primary: #2a2a2a;
+  --accent-hover: #333333;
+  --accent-active: #3d3d3d;
+  --accent-glow: #c0c8d8;
   --text-primary: #e2e8f0;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --border-color: #2d3a56;
+  --text-secondary: #8a9ab5;
+  --text-muted: #535f73;
+  --border-color: #282828;
   --success: #22c55e;
   --warning: #f59e0b;
   --error: #ef4444;
-  --fader-track: #0d1526;
-  --fader-fill: #3b82f6;
-  --fader-thumb: #e2e8f0;
-  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
-  --radius: 8px;
-  --radius-sm: 4px;
+  --fader-track: #0d0d0d;
+  --fader-fill: rgba(192, 200, 216, 0.45);
+  --fader-thumb: #c0c8d8;
+  --shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --radius: 10px;
+  --radius-sm: 6px;
   --font-mono: 'SF Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
   --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
@@ -70,7 +70,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 20px;
+  padding: 12px 20px 12px 80px;
   background: var(--bg-surface);
   border-bottom: 1px solid var(--border-color);
   min-height: 52px;
@@ -84,21 +84,22 @@ body {
 }
 
 .app-header h1 {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
 }
 
 .app-header .version-badge {
-  font-size: 11px;
-  font-weight: 500;
-  padding: 2px 8px;
-  background: var(--accent-primary);
-  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--text-muted);
   border-radius: var(--radius-sm);
   letter-spacing: 0.3px;
   font-family: var(--font-mono);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .app-header .status-area {
@@ -117,13 +118,14 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 100px;
-  min-width: 100px;
+  width: 110px;
+  min-width: 110px;
   background: var(--bg-surface);
   border-right: 1px solid var(--border-color);
-  padding: 16px 8px;
-  gap: 16px;
+  padding: 20px 10px;
+  gap: 20px;
   overflow-y: auto;
+  align-items: center;
 }
 
 .main-content {
@@ -193,11 +195,11 @@ body {
 }
 
 .master-fader label {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 9px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: var(--text-secondary);
-  letter-spacing: 1px;
+  color: var(--text-muted);
+  letter-spacing: 1.2px;
 }
 
 .master-fader .fader-value {
@@ -251,11 +253,11 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  padding: 8px 4px;
+  padding: 8px 6px;
   background: var(--bg-elevated);
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-color);
-  min-width: 60px;
+  min-width: 70px;
 }
 
 .channel-fader .channel-number {
@@ -360,7 +362,7 @@ body {
 }
 
 .fixture-tab.active {
-  color: var(--accent-glow);
+  color: var(--text-primary);
   border-bottom-color: var(--accent-glow);
 }
 
@@ -399,9 +401,9 @@ body {
 }
 
 .color-mode-badge.rgb {
-  color: #4fc3f7;
-  background: rgba(79, 195, 247, 0.15);
-  border: 1px solid rgba(79, 195, 247, 0.3);
+  color: #94a3b8;
+  background: rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(148, 163, 184, 0.22);
 }
 
 .color-mode-badge.hsb {
@@ -427,15 +429,25 @@ body {
    Color Wheel
    ============================================================ */
 
-/* Outer wrapper: horizontal row — [Dim slider] [Sat slider] [Color donut] */
+/* Outer wrapper: column — [Color donut] then [Dim + Sat sliders] */
 .color-wheel-wrapper {
   display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 16px;
   background: var(--bg-elevated);
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
+  width: 100%;
+}
+
+/* Sliders row below the wheel */
+.color-wheel-sliders-row {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 /* Vertical Slider Component */
@@ -455,14 +467,14 @@ body {
 }
 
 .vertical-slider-track {
-  width: 50px;
+  width: 70px;
   height: 220px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 25px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 35px;
   position: relative;
   cursor: pointer;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
@@ -471,8 +483,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
-  border-radius: 25px;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.95));
+  border-radius: 35px;
   transition: height 0.05s ease-out;
   pointer-events: none;
 }
@@ -488,11 +500,13 @@ body {
 
 /* Temperature (warm) slider variant */
 .vertical-slider-track--warm {
-  background: linear-gradient(to top, rgba(255, 147, 41, 0.15), rgba(120, 180, 255, 0.15));
-  border: 1px solid rgba(255, 180, 80, 0.2);
+  background: linear-gradient(to top, rgba(255, 147, 41, 0.1), rgba(120, 180, 255, 0.1));
+  border: 1px solid rgba(255, 180, 80, 0.15);
 }
 
 .vertical-slider-fill--warm {
+  max-height: 100%;
+  overflow: hidden;
   /* Dynamic color applied via inline style based on Kelvin value */
 }
 
@@ -514,7 +528,9 @@ body {
 .color-wheel-canvas {
   cursor: crosshair;
   border-radius: 50%;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.4);
+  max-width: 100%;
+  height: auto;
 }
 
 .color-preview {
@@ -542,129 +558,152 @@ body {
    ============================================================ */
 
 .preset-grid {
-  padding: 16px;
-}
-
-.preset-grid-header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
+  gap: 16px;
+  padding: 14px 20px;
+  overflow: hidden;
 }
 
-.preset-grid-header h3 {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-secondary);
+.preset-grid-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .preset-grid-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  gap: 8px;
-}
-
-.preset-button {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 8px;
-  border: 2px solid transparent;
-  border-radius: var(--radius);
-  font-size: 13px;
-  font-weight: 500;
-  color: white;
-  cursor: pointer;
-  text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  transition: all 0.15s;
-  min-height: 48px;
-  touch-action: manipulation;
+  gap: 10px;
+  overflow-x: auto;
+  align-items: flex-start;
+  padding-bottom: 2px;
+  scrollbar-width: none;
 }
 
-.preset-button:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+.preset-grid-items::-webkit-scrollbar {
+  display: none;
 }
 
-.preset-button:active {
-  transform: scale(0.98);
-}
-
-.preset-button.active {
-  border-color: var(--accent-glow);
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
-}
-
-.preset-button.add-preset {
-  background: var(--bg-elevated);
-  border: 2px dashed var(--border-color);
-  color: var(--text-secondary);
-  font-size: 24px;
-}
-
-.preset-button.add-preset:hover {
-  border-color: var(--accent-glow);
-  color: var(--accent-glow);
-}
-
-/* Preset button wrapper with edit/delete actions */
+/* Preset button wrapper: pill with dot + action bar */
 .preset-button-wrapper {
-  position: relative;
   display: flex;
   flex-direction: column;
-  border-radius: var(--radius);
-  overflow: hidden;
-  border: 2px solid transparent;
-  transition: border-color 0.15s;
-}
-
-.preset-button-wrapper.active {
-  border-color: var(--accent-glow);
-  box-shadow: 0 0 16px rgba(59, 130, 246, 0.4);
+  align-items: center;
+  flex-shrink: 0;
+  gap: 0;
 }
 
 .preset-button-wrapper .preset-button {
-  border-radius: 0;
-  border: none;
-  flex: 1;
+  border-radius: 999px;
+  padding: 10px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  touch-action: manipulation;
+  border: 2px solid var(--preset-color, rgba(255,255,255,0.4));
+  background: color-mix(in srgb, var(--preset-color, rgba(255,255,255,0.4)) 13%, transparent);
+  color: var(--preset-color, rgba(255,255,255,0.7));
+  text-shadow: none;
+  min-width: 80px;
+  text-align: center;
 }
 
-.preset-button-wrapper .preset-button.active {
-  border: none;
-  box-shadow: none;
+.preset-button-wrapper .preset-button:hover {
+  background: color-mix(in srgb, var(--preset-color, rgba(255,255,255,0.4)) 22%, transparent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px color-mix(in srgb, var(--preset-color, transparent) 25%, transparent);
 }
 
+.preset-button-wrapper .preset-button:active {
+  transform: scale(0.97);
+}
+
+.preset-button-wrapper.active .preset-button {
+  background: color-mix(in srgb, var(--preset-color, rgba(255,255,255,0.4)) 22%, transparent);
+  box-shadow: 0 0 18px color-mix(in srgb, var(--preset-color, transparent) 35%, transparent);
+}
+
+/* Dot indicator */
+.preset-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  margin-top: 5px;
+  background: var(--preset-color, rgba(255,255,255,0.3));
+  flex-shrink: 0;
+  opacity: 0.65;
+  transition: opacity 0.15s;
+}
+
+.preset-button-wrapper.active .preset-dot {
+  opacity: 1;
+  box-shadow: 0 0 6px var(--preset-color, transparent);
+}
+
+/* Action bar below pill */
 .preset-button-actions {
   display: flex;
-  background: rgba(0, 0, 0, 0.4);
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  margin-top: 4px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .preset-action-btn {
   flex: 1;
-  padding: 4px 0;
+  padding: 3px 0;
   border: none;
   background: transparent;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.3);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   transition: all 0.15s;
   touch-action: manipulation;
 }
 
 .preset-action-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 .preset-action-btn.preset-action-delete:hover {
-  background: rgba(239, 68, 68, 0.3);
-  color: var(--error);
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
 }
 
-.preset-action-btn+.preset-action-btn {
-  border-left: 1px solid rgba(255, 255, 255, 0.1);
+.preset-action-btn + .preset-action-btn {
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* "+ Save current" pill button */
+.preset-add-btn {
+  flex-shrink: 0;
+  border: 2px dashed rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.3);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  touch-action: manipulation;
+}
+
+.preset-add-btn:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 /* ============================================================
@@ -838,6 +877,39 @@ body {
 .btn-icon:hover {
   background: var(--bg-elevated);
   color: var(--text-primary);
+}
+
+/* ============================================================
+   Blackout Button
+   ============================================================ */
+
+.blackout-btn {
+  width: 100%;
+  padding: 18px 10px;
+  border: 2px solid rgba(239, 68, 68, 0.5);
+  border-radius: 12px;
+  background: rgba(239, 68, 68, 0.08);
+  color: #f87171;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  touch-action: manipulation;
+  font-family: var(--font-sans);
+}
+
+.blackout-btn:hover {
+  border-color: rgba(239, 68, 68, 0.85);
+  background: rgba(239, 68, 68, 0.16);
+  color: #fca5a5;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.2);
+}
+
+.blackout-btn:active {
+  background: rgba(239, 68, 68, 0.3);
+  transform: scale(0.97);
 }
 
 /* ============================================================
@@ -1157,14 +1229,14 @@ body {
 .effect-btn:hover {
   border-color: var(--accent-glow);
   color: var(--text-primary);
-  background: rgba(56, 189, 248, 0.06);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .effect-btn.active {
   border-color: var(--accent-glow);
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(255, 255, 255, 0.08);
   color: var(--accent-glow);
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.15), inset 0 0 8px rgba(56, 189, 248, 0.05);
+  box-shadow: 0 0 12px rgba(192, 200, 216, 0.12), inset 0 0 8px rgba(192, 200, 216, 0.04);
 }
 
 .effect-icon {
@@ -1242,9 +1314,9 @@ body {
 }
 
 .dmx-toggle-track.on {
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(192, 200, 216, 0.1);
   border-color: var(--accent-glow);
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 8px rgba(192, 200, 216, 0.12);
 }
 
 .dmx-toggle-thumb {
@@ -1262,7 +1334,7 @@ body {
   bottom: auto;
   top: 3px;
   background: var(--accent-glow);
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 6px rgba(192, 200, 216, 0.35);
 }
 
 /* ============================================================
@@ -1303,7 +1375,7 @@ body {
 
 .stepped-slider-track.dragging {
   border-color: var(--accent-glow);
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 8px rgba(192, 200, 216, 0.15);
 }
 
 .stepped-notch {
@@ -1322,11 +1394,11 @@ body {
 }
 
 .stepped-notch:hover {
-  background: rgba(56, 189, 248, 0.08);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .stepped-notch.active {
-  background: rgba(56, 189, 248, 0.18);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--accent-glow);
 }
 
@@ -1341,7 +1413,7 @@ body {
 
 .stepped-notch.active .stepped-notch-pip {
   background: var(--accent-glow);
-  box-shadow: 0 0 6px rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 6px rgba(192, 200, 216, 0.4);
 }
 
 .stepped-notch-label {
@@ -1385,14 +1457,14 @@ body {
 .stepped-extra-btn:hover {
   border-color: var(--accent-glow);
   color: var(--text-primary);
-  background: rgba(56, 189, 248, 0.06);
+  background: rgba(255, 255, 255, 0.04);
 }
 
 .stepped-extra-btn.active {
   border-color: var(--accent-glow);
-  background: rgba(56, 189, 248, 0.15);
+  background: rgba(255, 255, 255, 0.09);
   color: var(--accent-glow);
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.2);
+  box-shadow: 0 0 8px rgba(192, 200, 216, 0.12);
 }
 
 .stepped-extra-icon {
@@ -1540,7 +1612,7 @@ body {
   display: flex;
   gap: 2px;
   margin-left: 20px;
-  background: var(--bg-primary);
+  background: rgba(0, 0, 0, 0.3);
   border-radius: 8px;
   padding: 3px;
   -webkit-app-region: no-drag;
@@ -1569,8 +1641,8 @@ body {
 
 .view-tab.active {
   color: var(--text-primary);
-  background: var(--accent-primary);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  background: var(--bg-elevated);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 .view-tab svg {
@@ -1638,7 +1710,7 @@ body {
 }
 
 .canvas-edit-toggle.active {
-  background: var(--accent-primary);
+  background: var(--bg-elevated);
   border-color: var(--accent-glow);
   color: var(--text-primary);
 }
@@ -1680,9 +1752,9 @@ body {
 .studio-canvas {
   width: 100%;
   height: 100%;
-  border-radius: 8px;
+  border-radius: 10px;
   border: 1px solid var(--border-color);
-  background: #2a2a2a;
+  background: #181818;
 }
 
 .canvas-watermark {
@@ -1907,7 +1979,7 @@ body {
 
 .fixture-palette-item.placed.active {
   opacity: 1;
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(255, 255, 255, 0.05);
   border-left-color: var(--accent-glow);
 }
 

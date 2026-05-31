@@ -24,15 +24,18 @@ export const PresetButton: React.FC<PresetButtonProps> = ({
   onDelete,
 }) => {
   return (
-    <div className={`preset-button-wrapper ${isActive ? 'active' : ''}`}>
+    <div
+      className={`preset-button-wrapper ${isActive ? 'active' : ''}`}
+      style={{ '--preset-color': color } as React.CSSProperties}
+    >
       <button
-        className={`preset-button ${isActive ? 'active' : ''}`}
-        style={{ backgroundColor: color }}
+        className="preset-button"
         onClick={() => onClick(id)}
         title={`Recall: ${name}`}
       >
         {name}
       </button>
+      <span className="preset-dot" />
       <div className="preset-button-actions">
         <button
           className="preset-action-btn"

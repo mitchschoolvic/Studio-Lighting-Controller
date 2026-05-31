@@ -197,6 +197,17 @@ download.sh
 start_app.sh
 *.zip
 
+# -------------------- App icons (generated large binaries) --------------------
+*.icns
+*.iconset/
+Icon/
+
+# -------------------- Companion module local dependencies --------------------
+companion-module-lighting-controller/node_modules/
+companion-module-variable-sender/node_modules/
+companion-module-lighting-controller/dist/
+companion-module-variable-sender/dist/
+
 # -------------------- Text Notes/Temp Files --------------------
 *.txt
 !README.txt
